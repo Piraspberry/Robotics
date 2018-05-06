@@ -7,7 +7,12 @@ MIT License grants you to have full access of the code until you keep the above 
 */
 /*Download the app from https://play.google.com/store/apps/details?id=braulio.calle.bluetoothRCcontroller */ 
 /*Tx of HC05 to Rx of Arduino
-Rx of HC05 to Tx of Arduino*/
+Rx of HC05 to Tx of Arduino
+M1,M3=LEFT motors
+M2,M4=RIGHT motors
+M1,M2=FRONT motors
+M3,M4= BACK motors
+*/
 
 int motor1Pin1 = 2; 
 int motor1Pin2 = 3; 
@@ -137,25 +142,38 @@ void loop() {
 void forward()
 {
    digitalWrite(motor1Pin1, LOW);
-   digitalWrite(motor1Pin2, LOW);
-   digitalWrite(motor2Pin1, HIGH);
-   digitalWrite(motor2Pin2, LOW);
+   digitalWrite(motor1Pin2, HIGH);
+   digitalWrite(motor2Pin1, LOW);
+   digitalWrite(motor2Pin2, HIGH);
+   digitalWrite(motor3Pin1, LOW);
+   digitalWrite(motor3Pin2, HIGH);
+   digitalWrite(motor4Pin1, LOW);
+   digitalWrite(motor4Pin2, HIGH);
 }
 
 void backward()
 {
-   digitalWrite(motor1Pin1, LOW);
+   digitalWrite(motor1Pin1, HIGH);
    digitalWrite(motor1Pin2, LOW);
-   digitalWrite(motor2Pin1, LOW);
-   digitalWrite(motor2Pin2, HIGH); 
+   digitalWrite(motor2Pin1, HIGH);
+   digitalWrite(motor2Pin2, LOW); 
+   digitalWrite(motor3Pin1, HIGH);
+   digitalWrite(motor3Pin2, LOW);
+   digitalWrite(motor4Pin1, HIGH);
+   digitalWrite(motor4Pin2, LOW); 
 }
 
 void left()
 {
    digitalWrite(motor1Pin1, HIGH);
    digitalWrite(motor1Pin2, LOW);
-   digitalWrite(motor2Pin1, HIGH);
-   digitalWrite(motor2Pin2, LOW);
+   digitalWrite(motor2Pin1, LOW);
+   digitalWrite(motor2Pin2, HIGH);
+   
+   digitalWrite(motor3Pin1, HIGH);
+   digitalWrite(motor3Pin2, LOW);
+   digitalWrite(motor4Pin1, LOW);
+   digitalWrite(motor4Pin2, HIGH);
 }
 
 void right()
@@ -164,6 +182,11 @@ void right()
    digitalWrite(motor1Pin2, HIGH);
    digitalWrite(motor2Pin1, HIGH);
    digitalWrite(motor2Pin2, LOW);
+   
+   digitalWrite(motor3Pin1, LOW);
+   digitalWrite(motor3Pin2, HIGH);
+   digitalWrite(motor4Pin1, HIGH);
+   digitalWrite(motor4Pin2, LOW);
 }
 
 void halt()
@@ -172,4 +195,9 @@ void halt()
    digitalWrite(motor1Pin2, LOW);
    digitalWrite(motor2Pin1, LOW);
    digitalWrite(motor2Pin2, LOW);
+   
+   digitalWrite(motor3Pin1, LOW);
+   digitalWrite(motor3Pin2, LOW);
+   digitalWrite(motor4Pin1, LOW);
+   digitalWrite(motor4Pin2, LOW);
 }

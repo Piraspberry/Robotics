@@ -1,0 +1,165 @@
+
+int motor1Pin1 = 2; 
+int motor1Pin2 = 3; 
+int motor2Pin1 = 4; 
+int motor2Pin2 = 5; 
+int motor3Pin1 = 6;
+int motor3Pin2 = 7;
+int motor4Pin1 = 8;
+int motor4Pin2 = 9;
+
+int enable1Pin = 10; 
+int enable2Pin = 11; 
+int enable3Pin = 12;
+int enable4Pin = 13;
+int i=0;
+int state;
+int flag=0;    
+int stateStop=0;
+void setup() {
+   
+pinMode(motor1Pin1, OUTPUT);
+pinMode(motor1Pin2, OUTPUT);
+pinMode(motor2Pin1, OUTPUT);
+pinMode(motor2Pin2, OUTPUT);
+pinMode(motor3Pin1, OUTPUT);
+pinMode(motor3Pin2, OUTPUT);
+pinMode(motor4Pin1, OUTPUT); 
+pinMode(motor4Pin2, OUTPUT);
+
+pinMode(enable1Pin, OUTPUT);
+pinMode(enable2Pin, OUTPUT);
+pinMode(enable3Pin, OUTPUT);
+pinMode(enable4Pin, OUTPUT);   
+    
+Serial.begin(9600);
+}
+
+void loop() {
+
+   if(Serial.available() > 0){     
+   state = Serial.read();   
+   flag=0;
+    }   
+   
+   if (state == 'F') {
+   forward();
+   if(flag == 0){
+   Serial.println("Forward");
+   flag=1;
+        }
+    }
+    
+   else if (state == 'L') {
+   left();        
+   if(flag == 0){
+   Serial.println("Left");
+   flag=1;
+        }   
+    }
+
+    else if (state == 'X') {
+ halt();
+        if(flag == 0){
+          Serial.println("Stop");
+          flag=1;
+        }
+        
+    }
+    
+   else if (state == 'R') {
+   right();
+   if(flag == 0){
+   Serial.println("Right");
+   flag=1;
+        }
+    }
+   else if (state == 'B') {
+   backward();
+   if(flag == 0){
+   Serial.println("Back");
+   flag=1;
+        }}
+   else if (state == '0') {
+    
+   analogWrite(enable1Pin, LOW);
+   analogWrite(enable2Pin,LOW);
+   analogWrite(enable3Pin, LOW);
+   analogWrite(enable4Pin,LOW);
+   if(flag == 0){
+   Serial.println("Speed Change");
+   flag=1;
+        }
+    }
+        else if ((state == '1')||(state == '2')||(state == '4')) {
+   
+   analogWrite(enable1Pin, 75);
+   analogWrite(enable2Pin,75);
+   analogWrite(enable3Pin, 75);
+   analogWrite(enable4Pin,75);
+        if(flag == 0){
+          Serial.println("Speed Change");
+          flag=1;
+        }
+    }    else if ((state == '5')||(state == '6')||(state == '7')) {
+       
+   analogWrite(enable1Pin, 150);
+   analogWrite(enable2Pin,150);
+   analogWrite(enable3Pin, 150);
+   analogWrite(enable4Pin,150);
+   if(flag == 0){
+   Serial.println("Speed Change");
+   flag=1;
+        }
+    }
+    else if ((state == '8')||(state == '9')||(state == 'q')) {
+   digitalWrite(enable1Pin, HIGH);
+   digitalWrite(enable2Pin,HIGH);
+   digitalWrite(enable3Pin, HIGH);
+   digitalWrite(enable4Pin,HIGH);
+   if(flag == 0){
+   Serial.println("Speed Change");
+   flag=1;
+        }
+    } 
+}
+
+void forward()
+{
+   digitalWrite(motor1Pin1, LOW);
+   digitalWrite(motor1Pin2, LOW);
+   digitalWrite(motor2Pin1, HIGH);
+   digitalWrite(motor2Pin2, LOW);
+}
+
+void backward()
+{
+   digitalWrite(motor1Pin1, LOW);
+   digitalWrite(motor1Pin2, LOW);
+   digitalWrite(motor2Pin1, LOW);
+   digitalWrite(motor2Pin2, HIGH); 
+}
+
+void left()
+{
+   digitalWrite(motor1Pin1, HIGH);
+   digitalWrite(motor1Pin2, LOW);
+   digitalWrite(motor2Pin1, HIGH);
+   digitalWrite(motor2Pin2, LOW);
+}
+
+void right()
+{
+   digitalWrite(motor1Pin1, LOW);
+   digitalWrite(motor1Pin2, HIGH);
+   digitalWrite(motor2Pin1, HIGH);
+   digitalWrite(motor2Pin2, LOW);
+}
+
+void halt()
+{
+   digitalWrite(motor1Pin1, LOW);
+   digitalWrite(motor1Pin2, LOW);
+   digitalWrite(motor2Pin1, LOW);
+   digitalWrite(motor2Pin2, LOW);
+}

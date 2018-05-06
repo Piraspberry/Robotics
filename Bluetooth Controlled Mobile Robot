@@ -5,6 +5,9 @@ Copyright (c) 2018 Sounder R
 Code Written and tested by Sounder; contact me on any queries at sounderajendran@gmail.com
 MIT License grants you to have full access of the code until you keep the above part of licence declaration and Author name intact with the codes. 
 */
+/*Download the app from https://play.google.com/store/apps/details?id=braulio.calle.bluetoothRCcontroller */ 
+/*Tx of HC05 to Rx of Arduino
+Rx of HC05 to Tx of Arduino*/
 
 int motor1Pin1 = 2; 
 int motor1Pin2 = 3; 

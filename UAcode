@@ -1,0 +1,36 @@
+import csv
+from collections import defaultdict
+from math import radians, sin, cos, sqrt, asin
+columns = defaultdict(list) # each value in each column is appended to a list
+
+with open('tester.csv') as f:
+    reader = csv.DictReader(f) # read rows into a dictionary format
+    for row in reader: # read a row as {column1: value1, column2: value2,...}
+        for (k,v) in row.items(): # go over each column name and value 
+            columns[k].append(v) # append the value into the appropriate list
+                                 # based on column name k
+dan=[]
+dan=(columns['coordinates'])
+latlon1=dan[0]
+latlon2=dan[1]
+
+latlon11=dan[0].split(', ')
+lat1=int(latlon11[0])
+long1=int(latlon11[1])
+
+
+#calc lat2 and lon2 and send to haversine
+ 
+def haversine(lat1, lon1, lat2, lon2):
+ 
+  R = 6372.8 # Earth radius in kilometers
+ 
+  dLat = radians(lat2 - lat1)
+  dLon = radians(lon2 - lon1)
+  lat1 = radians(lat1)
+  lat2 = radians(lat2)
+ 
+  a = sin(dLat/2)**2 + cos(lat1)*cos(lat2)*sin(dLon/2)**2
+  c = 2*asin(sqrt(a))
+ 
+  return R * c

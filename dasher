@@ -1,0 +1,148 @@
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+
+import csv
+
+with open('sudodataUA1.csv', 'rU') as infile:
+  
+  reader = csv.DictReader(infile)
+  data = {}
+  for row in reader:
+    for header, value in row.items():
+      try:
+        data[header].append(value)
+      except KeyError:
+        data[header] = [value]
+
+mile= data['Miles']
+cost = data['Price']
+hrs = data['Duration1']
+ppm = data['Price1']
+mile=list(map(float,mile))
+cost=list(map(float,cost))
+hrs=list(map(float,hrs))
+ppm=list(map(float,ppm))
+print(mile)
+print(cost)
+print(hrs)
+print(ppm)
+
+#Define Dash App
+app=dash.Dash()
+
+
+app.layout = html.Div([
+    html.Div([
+        dcc.Graph(
+            id='example-graph',
+            figure={
+                'data': [
+                    {'x': mile, 'y': cost, 'type': 'line'}
+                ],
+                'layout': {
+                    'title': 'Miles vs Cost',
+                    'height':600
+                    }
+                }
+            ),
+        ],
+        style={'width': '33%'}
+        ),
+
+    html.Div([
+        html.Label('Multi-Select Dropdown'),
+        dcc.Dropdown(
+            options=[
+                {'label': 'Miles vs Cost', 'value': 'NYC'},
+                {'label': 'Duration vs PPM', 'value': 'MTL'},
+                {'label': 'Random variable vs units', 'value': 'SF'}
+                ],
+            value=['MTL', 'SF','NYC'],
+            multi=True
+        ),
+
+        dcc.Graph(
+            id='example-graph3',
+            figure={
+                'data': [
+                    {'x': hrs, 'y': ppm, 'type': 'line'}
+                ],
+                'layout': {
+                    'title': 'Duration of flight vs Price per mile',
+                    'height':600
+                    }
+                }
+            )
+        ],
+        style={'width': '33%', 'display':'inline' }
+        ),
+
+    html.Div([
+        dcc.Graph(
+            id='example-graph4',
+            figure={
+                'data': [
+                    {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar'}
+                ],
+                'layout': {
+                    'title': 'Data Visualization of Random values',
+                    'height':600
+                    }
+                }
+            )
+        ],
+        style={'width': '33%', 'display': 'inline-block', 'float':'right',},
+        ),
+    html.Div([
+        dcc.Graph(
+            id='example-graph5',
+            figure={
+                'data': [
+                    {
+                        "values": [16, 15, 12, 6, 5, 4, 42],
+                        "labels": [
+                            "US",
+                            "China",
+                            "European Union",
+                            "Russian Federation",
+                            "Brazil",
+                            "India",
+                            "Rest of World"
+                            ],
+                        "domain": {"x": [0, .48]},
+                        "name": "GHG Emissions",
+                        "hoverinfo":"label+percent+name",
+                        "hole": .4,
+                        "type": "pie"
+                        }
+                    ],
+                'layout': {
+                    'title': 'Pie Visuals',
+                    "annotations":
+                    [
+                        {
+                            "font": {
+                                "size": 20
+                                },
+                            "showarrow": False,
+                            "text": "GHG",
+                            "x": 0.20,
+                            "y": 0.5
+                            }
+                        ],
+                    'height':900
+                    
+                    }
+                }
+            )
+        ],
+        style={'width': '33%', 'display': 'inline-block' },
+        )
+
+    ]
+)
+
+
+if __name__ == '__main__':
+    app.run_server()

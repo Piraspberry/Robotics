@@ -1,0 +1,24 @@
+PiShotPy
+Created by Sounder Rajendran 
+Mail me about any grievances or errors at sounderajendran@gmail.com
+Drop a thankyou message if my work ever helped you save some time
+
+Problem Statement:
+WE would have to use the terminal to install and deploy the screen shot packages and commands.
+This usually took four to five steps. The aim of this app is to simplify your efforts into a GUI and save time. 
+
+Usage:
+1) Run the GUI by double-clicking on it 
+2) Select if you want the screen shot to be taken at that instant or after a delay time 
+3) Note that the PiSHotPy app will be not be included in the QuickShot process
+4) If you select the Screen Shot with delay option, select if you want the screen shot to be taken after user-defined or built-in number of seconds.
+5) Note that there are 5,10 and 20 second options available in the Screen Shot via Built-in delay option 
+6) If you choose to specify the delay time in seconds, Enter it in the text box and the screen shot will be taken in the specified time.
+
+
+That's pretty much it!
+The source code can be obtained from me upon request by e-mail
+
+Have a wonderful day!!
+
+This is Sounder Rajendran, at your service

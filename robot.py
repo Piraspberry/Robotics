@@ -20,9 +20,8 @@ def forward(i):
 	GPIO.output(revleft, False)
 	GPIO.output(revright, False)
 	print("Forward Moto")
-	#time.sleep(i)
-	#GPIO.output(fwdright, False)
-	#GPIO.output(fwdleft, False)
+	time.sleep(i)
+
 
 def right(i):
 	GPIO.output(revright, True)
@@ -30,9 +29,8 @@ def right(i):
 	GPIO.output(revleft, False)
 	GPIO.output(fwdright, False)
         print("Right Moto")
-	#time.sleep(i)
-	#GPIO.output(revright, False)
-	#GPIO.output(fwdleft, False)	
+	time.sleep(i)
+
 
 def left(i):
 	GPIO.output(fwdright, True)
@@ -40,9 +38,8 @@ def left(i):
 	GPIO.output(fwdleft, False)
 	GPIO.output(revright, False)
         print("Left Moto")
-	#time.sleep(i)
-	#GPIO.output(fwdright, False)
-	#GPIO.output(revleft, False)
+	time.sleep(i)
+
 
 def reverse(i):
 	GPIO.output(revleft, True)
@@ -50,19 +47,18 @@ def reverse(i):
 	GPIO.output(fwdleft, False)
 	GPIO.output(fwdright, False)
         print("Reverse Moto")
-	#time.sleep(i)
-	#GPIO.output(revleft, False)
-	#GPIO.output(revright, False)
+	time.sleep(i)
+
 
 def stopp():
 	GPIO.output(revleft, False)
 	GPIO.output(revright, False)
 	GPIO.output(fwdleft, False)
 	GPIO.output(fwdright, False)
-	#time.sleep(0.3)
+
 	print("Stop Moto")
-	#GPIO.output(revleft, False)
-	#GPIO.output(revright, False)
+	#time.sleep(0.5)
+
 
 try:
 	print("R E A D Y")
